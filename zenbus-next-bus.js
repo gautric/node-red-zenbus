@@ -9,8 +9,9 @@ function fetchProto(url, Type) {
 }
 
 function secsToHHMM(secs) {
-    var h = Math.floor(secs / 3600);
-    var m = Math.floor((secs % 3600) / 60);
+    var s = ((secs % 86400) + 86400) % 86400;
+    var h = Math.floor(s / 3600);
+    var m = Math.floor((s % 3600) / 60);
     return h + 'h' + String(m).padStart(2, '0');
 }
 
