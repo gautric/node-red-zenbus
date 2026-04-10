@@ -1,4 +1,4 @@
-# zenbus-next-bus
+# node-red-zenbus
 
 Real-time next bus ETA from [Zenbus](https://zenbus.net) networks, streamed to your terminal.
 
@@ -7,7 +7,7 @@ Calls the Zenbus API directly using protobuf — no browser, no scraping.
 ## Install
 
 ```bash
-npm install -g zenbus-next-bus
+npm install -g node-red-zenbus
 ```
 
 ## CLI Usage
@@ -41,7 +41,7 @@ Outputs one JSON object per poll cycle to stdout — ideal for piping to other t
 ## Programmatic Usage
 
 ```js
-import { createClient } from 'zenbus-next-bus';
+import { createClient } from 'node-red-zenbus';
 
 const client = await createClient({ alias: 'gpso', itinerary: '...', stop: '...' });
 const data = await client.poll();
@@ -53,7 +53,7 @@ console.log(data.next); // { etaMinutes, distanceM, estimatedArrival, scheduledT
 Install in your Node-RED directory:
 
 ```bash
-npm install zenbus-next-bus
+npm install node-red-zenbus
 ```
 
 The `zenbus-next-bus` node appears in the palette. Configure alias, itinerary, stop, and interval. It outputs `msg.payload` with the full poll data on each cycle.
