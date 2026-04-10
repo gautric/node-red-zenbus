@@ -1,7 +1,7 @@
 <script type="text/javascript">
   RED.nodes.registerType('zenbus-next-bus', {
     category: 'network',
-    color: '#00B272',
+    color: '#5BA8A8',
     defaults: {
       name: { value: '' },
       alias: { value: '', required: true },
@@ -9,7 +9,7 @@
       stop: { value: '', required: true },
       interval: { value: 10, validate: RED.validators.number() }
     },
-    inputs: 1,
+    inputs: 0,
     outputs: 1,
     icon: 'zenbus.png',
     label: function () {
