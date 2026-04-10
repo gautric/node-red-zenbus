@@ -1,5 +1,22 @@
 [
     {
+        "id": "flow1",
+        "type": "tab",
+        "label": "Zenbus Next Bus",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "comment1",
+        "type": "comment",
+        "z": "flow1",
+        "name": "Zenbus Next Bus - Example",
+        "info": "Polls the Zenbus API every 10 seconds and outputs the next bus ETA.\n\nEdit the zenbus node to set your alias, itinerary and stop IDs.\nFind them in the URL at https://zenbus.net",
+        "x": 200,
+        "y": 100,
+        "wires": []
+    },
+    {
         "id": "zenbus1",
         "type": "zenbus-next-bus",
         "z": "flow1",
@@ -28,12 +45,5 @@
         "x": 450,
         "y": 200,
         "wires": []
-    },
-    {
-        "id": "flow1",
-        "type": "tab",
-        "label": "Zenbus Next Bus",
-        "disabled": false,
-        "info": ""
     }
 ]

@@ -1,7 +1,7 @@
 <script type="text/javascript">
   RED.nodes.registerType('zenbus-next-bus', {
     category: 'location',
-    color: '#8e6538',
+    color: '#DEB887',
     defaults: {
       name: { value: '' },
       alias: { value: '', required: true },
@@ -15,7 +15,11 @@
     label: function () {
       return this.name || 'zenbus ' + (this.alias || '');
     },
-    paletteLabel: 'zenbus next bus'
+    labelStyle: function () {
+      return this.name ? 'node_label_italic' : '';
+    },
+    paletteLabel: 'zenbus next bus',
+    outputLabels: ['bus ETA data']
   });
 </script>
 
@@ -43,35 +47,35 @@
 </script>
 
 <script type="text/html" data-help-name="zenbus-next-bus">
-  <p>Polls the <a href="https://zenbus.net">Zenbus</a> real-time API and outputs next bus ETA.</p>
+  <p>Polls the Zenbus real-time API and outputs next bus ETA for a configured stop.</p>
 
-  <h3>Configuration</h3>
-  <dl class="message-properties">
-    <dt>Alias <span class="property-type">string</span></dt>
-    <dd>Network alias (e.g. <code>gpso</code>). Found in the Zenbus URL.</dd>
-    <dt>Itinerary <span class="property-type">string</span></dt>
-    <dd>Itinerary ID from the Zenbus URL.</dd>
-    <dt>Stop <span class="property-type">string</span></dt>
-    <dd>Stop ID from the Zenbus URL.</dd>
-    <dt>Interval <span class="property-type">number</span></dt>
-    <dd>Poll interval in seconds (default 10).</dd>
-  </dl>
-
-  <h3>Output</h3>
+  <h3>Outputs</h3>
   <dl class="message-properties">
     <dt>payload.stop <span class="property-type">string</span></dt>
     <dd>Stop name.</dd>
     <dt>payload.line <span class="property-type">string</span></dt>
     <dd>Line code.</dd>
     <dt>payload.next <span class="property-type">object | null</span></dt>
-    <dd>Next bus: <code>etaMinutes</code>, <code>distanceM</code>, <code>estimatedArrival</code>, <code>scheduledTime</code>, <code>isLive</code>.</dd>
-    <dt>payload.secondBus <span class="property-type">object | null</span></dt>
-    <dd>Second tracked bus (same fields), only when live distance is available.</dd>
+    <dd>Next bus with properties: <code>etaMinutes</code>, <code>distanceM</code>,
+        <code>estimatedArrival</code>, <code>scheduledTime</code>, <code>isLive</code>.</dd>
+    <dt class="optional">payload.secondBus <span class="property-type">object | null</span></dt>
+    <dd>Second tracked bus (same properties as <code>msg.payload.next</code>).</dd>
     <dt>payload.timestamp <span class="property-type">string</span></dt>
-    <dd>ISO timestamp of the poll.</dd>
+    <dd>ISO 8601 timestamp of the poll.</dd>
   </dl>
 
-  <h3>Finding your IDs</h3>
-  <p>Open your stop on <a href="https://zenbus.net">zenbus.net</a>. The URL contains:</p>
+  <h3>Details</h3>
+  <p>This node polls the <a href="https://zenbus.net">Zenbus</a> API at the configured
+     interval and sends a message with the next bus ETA for the specified stop.</p>
+  <p>Configure the node with the <code>alias</code>, <code>itinerary</code> and
+     <code>stop</code> values found in the Zenbus URL:</p>
   <pre>https://zenbus.net/publicapp/web/{alias}?line=...&amp;stop={stop}&amp;itinerary={itinerary}</pre>
+  <p>The node status shows a green dot with the ETA when live tracking is available,
+     a yellow dot when using scheduled data, or grey when no bus is found.</p>
+
+  <h3>References</h3>
+  <ul>
+    <li><a href="https://zenbus.net">Zenbus</a> - real-time bus tracking platform</li>
+    <li><a href="https://github.com/gautric/node-red-zenbus">GitHub</a> - the node's repository</li>
+  </ul>
 </script>
