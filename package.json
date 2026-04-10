@@ -1,6 +1,6 @@
 {
   "name": "node-red-zenbus",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Real-time next bus ETA from Zenbus networks via direct API (protobuf)",
   "type": "commonjs",
   "bin": {
