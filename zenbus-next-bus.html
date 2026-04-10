@@ -1,0 +1,77 @@
+<script type="text/javascript">
+  RED.nodes.registerType('zenbus-next-bus', {
+    category: 'transport',
+    color: '#8e6538',
+    defaults: {
+      name: { value: '' },
+      alias: { value: '', required: true },
+      itinerary: { value: '', required: true },
+      stop: { value: '', required: true },
+      interval: { value: 10, validate: RED.validators.number() }
+    },
+    inputs: 0,
+    outputs: 1,
+    icon: 'zenbus.png',
+    label: function () {
+      return this.name || 'zenbus ' + (this.alias || '');
+    },
+    paletteLabel: 'zenbus next bus'
+  });
+</script>
+
+<script type="text/html" data-template-name="zenbus-next-bus">
+  <div class="form-row">
+    <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-alias"><i class="fa fa-globe"></i> Alias</label>
+    <input type="text" id="node-input-alias" placeholder="e.g. gpso">
+  </div>
+  <div class="form-row">
+    <label for="node-input-itinerary"><i class="fa fa-road"></i> Itinerary</label>
+    <input type="text" id="node-input-itinerary" placeholder="Itinerary ID">
+  </div>
+  <div class="form-row">
+    <label for="node-input-stop"><i class="fa fa-map-marker"></i> Stop</label>
+    <input type="text" id="node-input-stop" placeholder="Stop ID">
+  </div>
+  <div class="form-row">
+    <label for="node-input-interval"><i class="fa fa-clock-o"></i> Interval (s)</label>
+    <input type="number" id="node-input-interval" min="5" step="1">
+  </div>
+</script>
+
+<script type="text/html" data-help-name="zenbus-next-bus">
+  <p>Polls the <a href="https://zenbus.net">Zenbus</a> real-time API and outputs next bus ETA.</p>
+
+  <h3>Configuration</h3>
+  <dl class="message-properties">
+    <dt>Alias <span class="property-type">string</span></dt>
+    <dd>Network alias (e.g. <code>gpso</code>). Found in the Zenbus URL.</dd>
+    <dt>Itinerary <span class="property-type">string</span></dt>
+    <dd>Itinerary ID from the Zenbus URL.</dd>
+    <dt>Stop <span class="property-type">string</span></dt>
+    <dd>Stop ID from the Zenbus URL.</dd>
+    <dt>Interval <span class="property-type">number</span></dt>
+    <dd>Poll interval in seconds (default 10).</dd>
+  </dl>
+
+  <h3>Output</h3>
+  <dl class="message-properties">
+    <dt>payload.stop <span class="property-type">string</span></dt>
+    <dd>Stop name.</dd>
+    <dt>payload.line <span class="property-type">string</span></dt>
+    <dd>Line code.</dd>
+    <dt>payload.next <span class="property-type">object | null</span></dt>
+    <dd>Next bus: <code>etaMinutes</code>, <code>distanceM</code>, <code>estimatedArrival</code>, <code>scheduledTime</code>, <code>isLive</code>.</dd>
+    <dt>payload.secondBus <span class="property-type">object | null</span></dt>
+    <dd>Second tracked bus (same fields), only when live distance is available.</dd>
+    <dt>payload.timestamp <span class="property-type">string</span></dt>
+    <dd>ISO timestamp of the poll.</dd>
+  </dl>
+
+  <h3>Finding your IDs</h3>
+  <p>Open your stop on <a href="https://zenbus.net">zenbus.net</a>. The URL contains:</p>
+  <pre>https://zenbus.net/publicapp/web/{alias}?line=...&amp;stop={stop}&amp;itinerary={itinerary}</pre>
+</script>
