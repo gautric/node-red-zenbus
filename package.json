@@ -6,13 +6,7 @@
   "bin": {
     "zenbus-next-bus": "./zenbus-next-bus.mjs"
   },
-  "exports": {
-    ".": "./zenbus-core.mjs",
-    "./core": "./zenbus-core.mjs",
-    "./node-red": "./zenbus-node-red.cjs",
-    "./package.json": "./package.json",
-    "./*": "./*"
-  },
+  "main": "zenbus-core.mjs",
   "node-red": {
     "version": ">=2.0.0",
     "nodes": {
