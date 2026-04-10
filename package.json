@@ -12,6 +12,7 @@
     "./node-red": "./zenbus-node-red.mjs"
   },
   "node-red": {
+    "version": ">=2.0.0",
     "nodes": {
       "zenbus-next-bus": "zenbus-node-red.cjs"
     },
