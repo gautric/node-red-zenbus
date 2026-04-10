@@ -2,7 +2,7 @@
   "name": "node-red-zenbus",
   "version": "1.0.4",
   "description": "Real-time next bus ETA from Zenbus networks via direct API (protobuf)",
-  "type": "module",
+  "type": "commonjs",
   "bin": {
     "zenbus-next-bus": "./zenbus-next-bus.mjs"
   },
@@ -25,6 +25,7 @@
   "scripts": {
     "start": "node zenbus-next-bus.mjs --alias gpso --itinerary 5426824545828864 --stop 5366312231501824"
   },
+
   "files": [
     "zenbus-core.mjs",
     "zenbus-next-bus.mjs",
