@@ -9,7 +9,9 @@
   "exports": {
     ".": "./zenbus-core.mjs",
     "./core": "./zenbus-core.mjs",
-    "./node-red": "./zenbus-node-red.mjs"
+    "./node-red": "./zenbus-node-red.cjs",
+    "./package.json": "./package.json",
+    "./*": "./*"
   },
   "node-red": {
     "version": ">=2.0.0",
