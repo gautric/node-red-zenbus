@@ -3,14 +3,11 @@
   "version": "1.0.9",
   "description": "Real-time next bus ETA from Zenbus networks via direct API (protobuf)",
   "type": "commonjs",
-  "bin": {
-    "zenbus-next-bus": "./zenbus-next-bus.mjs"
-  },
-  "main": "zenbus-core.mjs",
+  "main": "zenbus-next-bus.js",
   "node-red": {
     "version": ">=2.0.0",
     "nodes": {
-      "zenbus-next-bus": "zenbus-node-red.cjs"
+      "zenbus-next-bus": "zenbus-next-bus.js"
     },
     "examples": {
       "zenbus-next-bus": [
@@ -18,26 +15,22 @@
       ]
     }
   },
-  "scripts": {
-    "start": "node zenbus-next-bus.mjs --alias gpso --itinerary 5426824545828864 --stop 5366312231501824"
-  },
   "files": [
-    "zenbus-core.mjs",
-    "zenbus-next-bus.mjs",
-    "zenbus-node-red.cjs",
+    "zenbus-next-bus.js",
     "zenbus-next-bus.html",
     "icons",
-    "examples"
+    "examples",
+    "LICENSE",
+    "README.md"
   ],
   "keywords": [
+    "node-red",
     "zenbus",
     "bus",
     "transit",
     "real-time",
     "eta",
-    "protobuf",
-    "cli",
-    "node-red"
+    "protobuf"
   ],
   "author": "gautric",
   "license": "MIT",
@@ -53,7 +46,6 @@
     "node": ">=18"
   },
   "dependencies": {
-    "protobufjs": "^8.0.1",
-    "yargs": "^17.7.2"
+    "protobufjs": "^8.0.1"
   }
 }
