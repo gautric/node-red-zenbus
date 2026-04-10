@@ -1,6 +1,6 @@
 {
   "name": "zenbus-next-bus",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Real-time next bus ETA from Zenbus networks via direct API (protobuf)",
   "type": "module",
   "bin": {
@@ -17,7 +17,9 @@
       "zenbus-next-bus": "zenbus-node-red.cjs"
     },
     "examples": {
-      "zenbus-next-bus": ["examples/debug-next-bus.json"]
+      "zenbus-next-bus": [
+        "examples/debug-next-bus.json"
+      ]
     }
   },
   "scripts": {
