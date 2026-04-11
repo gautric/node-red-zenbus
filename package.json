@@ -1,5 +1,5 @@
 {
-  "name": "node-red-zenbus",
+  "name": "@gautric/node-red-zenbus",
   "version": "1.0.14",
   "description": "Real-time next bus ETA from Zenbus networks via direct API (protobuf)",
   "type": "commonjs",
