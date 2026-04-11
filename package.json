@@ -41,6 +41,10 @@
   "bugs": {
     "url": "https://github.com/gautric/node-red-zenbus/issues"
   },
+  "scripts": {
+    "update": "npm version minor",
+    "publish": "npm publish --access public"
+  },
   "homepage": "https://github.com/gautric/node-red-zenbus#readme",
   "engines": {
     "node": ">=18"
