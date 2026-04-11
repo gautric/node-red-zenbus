@@ -55,8 +55,10 @@
     <dd>Stop name.</dd>
     <dt>payload.line <span class="property-type">string</span></dt>
     <dd>Line code.</dd>
+    <dt>payload.now <span class="property-type">string</span></dt>
+    <dd>Current time as HhMM.</dd>
     <dt>payload.first <span class="property-type">object | null</span></dt>
-    <dd>First bus with properties: <code>etaMinutes</code>, <code>distanceM</code>,
+    <dd>First bus with properties: <code>eta</code>, <code>distance</code>,
         <code>estimatedArrival</code>, <code>scheduledTime</code>, <code>isLive</code>.</dd>
     <dt class="optional">payload.next <span class="property-type">object | null</span></dt>
     <dd>Second tracked bus (same properties as <code>msg.payload.first</code>).</dd>

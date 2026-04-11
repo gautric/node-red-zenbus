@@ -39,8 +39,8 @@ module.exports = function (RED) {
         function defaults(obj) {
             if (!obj) return null;
             return {
-                etaMinutes: obj.etaMinutes != null ? obj.etaMinutes : '-',
-                distanceM: obj.distanceM != null ? obj.distanceM : '-',
+                eta: obj.eta != null ? obj.eta : '-',
+                distance: obj.distance != null ? obj.distance : '-',
                 estimatedArrival: obj.estimatedArrival != null ? obj.estimatedArrival : '-',
                 scheduledTime: obj.scheduledTime != null ? obj.scheduledTime : '-',
                 isLive: obj.isLive != null ? obj.isLive : false
@@ -60,7 +60,7 @@ module.exports = function (RED) {
                     node.status({
                         fill: data.first.isLive ? 'green' : 'yellow',
                         shape: 'dot',
-                        text: data.first.etaMinutes + ' min (' + data.first.estimatedArrival + ')'
+                        text: data.first.eta + ' min (' + data.first.estimatedArrival + ')'
                     });
                 } else {
                     node.status({ fill: 'grey', shape: 'ring', text: 'no bus' });
