@@ -55,11 +55,11 @@
     <dd>Stop name.</dd>
     <dt>payload.line <span class="property-type">string</span></dt>
     <dd>Line code.</dd>
-    <dt>payload.next <span class="property-type">object | null</span></dt>
-    <dd>Next bus with properties: <code>etaMinutes</code>, <code>distanceM</code>,
+    <dt>payload.first <span class="property-type">object | null</span></dt>
+    <dd>First bus with properties: <code>etaMinutes</code>, <code>distanceM</code>,
         <code>estimatedArrival</code>, <code>scheduledTime</code>, <code>isLive</code>.</dd>
-    <dt class="optional">payload.secondBus <span class="property-type">object | null</span></dt>
-    <dd>Second tracked bus (same properties as <code>msg.payload.next</code>).</dd>
+    <dt class="optional">payload.next <span class="property-type">object | null</span></dt>
+    <dd>Second tracked bus (same properties as <code>msg.payload.first</code>).</dd>
     <dt>payload.timestamp <span class="property-type">string</span></dt>
     <dd>ISO 8601 timestamp of the poll.</dd>
   </dl>

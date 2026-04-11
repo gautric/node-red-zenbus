@@ -40,11 +40,11 @@ module.exports = function (RED) {
             if (!client || closing) return Promise.resolve();
             return client.poll().then(function (data) {
                 node.send({ payload: data });
-                if (data.next) {
+                if (data.first) {
                     node.status({
-                        fill: data.next.isLive ? 'green' : 'yellow',
+                        fill: data.first.isLive ? 'green' : 'yellow',
                         shape: 'dot',
-                        text: data.next.etaMinutes + ' min (' + data.next.estimatedArrival + ')'
+                        text: data.first.etaMinutes + ' min (' + data.first.estimatedArrival + ')'
                     });
                 } else {
                     node.status({ fill: 'grey', shape: 'ring', text: 'no bus' });

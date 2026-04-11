@@ -35,13 +35,13 @@ The node sends a `msg.payload` object on each poll cycle:
 |---|---|---|
 | `payload.stop` | string | Stop name |
 | `payload.line` | string | Line code |
-| `payload.next` | object \| null | Next bus info |
-| `payload.next.etaMinutes` | number | Minutes until arrival |
-| `payload.next.distanceM` | number | Distance in metres |
-| `payload.next.estimatedArrival` | string | Estimated arrival time |
-| `payload.next.scheduledTime` | string | Scheduled time |
-| `payload.next.isLive` | boolean | `true` if live-tracked |
-| `payload.secondBus` | object \| null | Second bus (same shape as `next`) |
+| `payload.first` | object \| null | First bus info |
+| `payload.first.etaMinutes` | number | Minutes until arrival |
+| `payload.first.distanceM` | number | Distance in metres |
+| `payload.first.estimatedArrival` | string | Estimated arrival time |
+| `payload.first.scheduledTime` | string | Scheduled time |
+| `payload.first.isLive` | boolean | `true` if live-tracked |
+| `payload.next` | object \| null | Second bus (same shape as `first`) |
 | `payload.timestamp` | string | ISO 8601 poll timestamp |
 
 ## Node status

@@ -50,6 +50,6 @@
     "node": ">=18"
   },
   "dependencies": {
-    "zenbus": "^1.0.0"
+    "zenbus": "^2.1.0"
   }
 }
