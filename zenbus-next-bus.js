@@ -36,9 +36,25 @@ module.exports = function (RED) {
             });
         }
 
+        function defaults(obj) {
+            if (!obj) return null;
+            return {
+                etaMinutes: obj.etaMinutes != null ? obj.etaMinutes : '-',
+                distanceM: obj.distanceM != null ? obj.distanceM : '-',
+                estimatedArrival: obj.estimatedArrival != null ? obj.estimatedArrival : '-',
+                scheduledTime: obj.scheduledTime != null ? obj.scheduledTime : '-',
+                isLive: obj.isLive != null ? obj.isLive : false
+            };
+        }
+
         function tick() {
             if (!client || closing) return Promise.resolve();
             return client.poll().then(function (data) {
+                data.first = defaults(data.first);
+                data.next = defaults(data.next);
+                data.stop = data.stop != null ? data.stop : '-';
+                data.line = data.line != null ? data.line : '-';
+                data.timestamp = data.timestamp != null ? data.timestamp : '-';
                 node.send({ payload: data });
                 if (data.first) {
                     node.status({
