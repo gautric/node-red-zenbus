@@ -1,72 +1,67 @@
-# node-red-zenbus
+# @gautric/node-red-zenbus
 
-Real-time next bus ETA from [Zenbus](https://zenbus.net) networks, streamed to your terminal.
+A [Node-RED](https://nodered.org) node that polls the [Zenbus](https://zenbus.net) real-time API and outputs next bus ETA for a configured stop.
 
-Calls the Zenbus API directly using protobuf — no browser, no scraping.
+Uses the Zenbus API directly via protobuf — no scraping, no browser.
+
+![Node-RED](https://img.shields.io/badge/Node--RED-%3E%3D2.0.0-red)
+![Node](https://img.shields.io/badge/node-%3E%3D18-green)
+![License](https://img.shields.io/badge/license-MIT-blue)
 
 ## Install
 
-```bash
-npm install -g node-red-zenbus
-```
-
-## CLI Usage
+From your Node-RED user directory (typically `~/.node-red`):
 
 ```bash
-zenbus-next-bus --alias gpso --itinerary 5426824545828864 --stop 5366312231501824
+npm install @gautric/node-red-zenbus
 ```
 
-### Options
+Restart Node-RED and the **zenbus** node will appear in the palette under the **transport** category.
 
-| Option | Env var | Description | Required |
-|---|---|---|---|
-| `--alias` | `ZENBUS_ALIAS` | Network alias (e.g. `gpso`) | yes |
-| `--itinerary` | `ZENBUS_ITINERARY` | Itinerary ID | yes |
-| `--stop` | `ZENBUS_STOP` | Stop ID | yes |
-| `--interval` | `ZENBUS_INTERVAL` | Poll interval in seconds (default: 10) | no |
-| `--output` | | Output format: `terminal` or `json` (default: terminal) | no |
+## Configuration
 
-### Terminal output (default)
+| Property | Description | Required |
+|---|---|---|
+| Alias | Network alias (e.g. `gpso`) | yes |
+| Itinerary | Itinerary ID | yes |
+| Stop | Stop ID | yes |
+| Interval | Poll interval in seconds (default: 10) | no |
 
-Live-updating display with real-time ETA, distance, scheduled time, and 2nd bus when available.
+## Output
 
-### JSON output
+The node sends a `msg.payload` object on each poll cycle:
 
-```bash
-zenbus-next-bus --alias gpso --itinerary ... --stop ... --output json
-```
+| Property | Type | Description |
+|---|---|---|
+| `payload.stop` | string | Stop name |
+| `payload.line` | string | Line code |
+| `payload.next` | object \| null | Next bus info |
+| `payload.next.etaMinutes` | number | Minutes until arrival |
+| `payload.next.distanceM` | number | Distance in metres |
+| `payload.next.estimatedArrival` | string | Estimated arrival time |
+| `payload.next.scheduledTime` | string | Scheduled time |
+| `payload.next.isLive` | boolean | `true` if live-tracked |
+| `payload.secondBus` | object \| null | Second bus (same shape as `next`) |
+| `payload.timestamp` | string | ISO 8601 poll timestamp |
 
-Outputs one JSON object per poll cycle to stdout — ideal for piping to other tools.
+## Node status
 
-## Programmatic Usage
+- 🟢 Green dot — live ETA with minutes and arrival time
+- 🟡 Yellow dot — scheduled data (not live-tracked)
+- ⚪ Grey ring — no bus found
+- 🔴 Red ring — error or init failure
 
-```js
-import { createClient } from 'node-red-zenbus';
+## Example flow
 
-const client = await createClient({ alias: 'gpso', itinerary: '...', stop: '...' });
-const data = await client.poll();
-console.log(data.next); // { etaMinutes, distanceM, estimatedArrival, scheduledTime, isLive }
-```
+A ready-to-use example is bundled with the package.
 
-## Node-RED
+In Node-RED: **Menu → Import → Examples → zenbus-next-bus → debug-next-bus**
 
-Install in your Node-RED directory:
-
-```bash
-npm install node-red-zenbus
-```
-
-The `zenbus-next-bus` node appears in the palette. Configure alias, itinerary, stop, and interval. It outputs `msg.payload` with the full poll data on each cycle.
-
-### Sample flow
-
-A ready-to-use example is bundled with the package. In Node-RED, go to **Menu → Import → Examples → zenbus-next-bus → debug-next-bus** to import a flow that wires the node to a debug output.
-
-You can also import it manually from `examples/debug-next-bus.json`.
+Or import manually from [`examples/debug-next-bus.json`](examples/debug-next-bus.json).
 
 ## Finding your IDs
 
-Open your stop on [zenbus.net](https://zenbus.net), the URL contains the IDs:
+Open your stop on [zenbus.net](https://zenbus.net). The URL contains the values you need:
 
 ```
 https://zenbus.net/publicapp/web/{alias}?line=...&stop={stop}&itinerary={itinerary}
@@ -74,4 +69,4 @@ https://zenbus.net/publicapp/web/{alias}?line=...&stop={stop}&itinerary={itinera
 
 ## License
 
-MIT
+[MIT](LICENSE)
