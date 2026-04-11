@@ -1,0 +1,49 @@
+[
+    {
+        "id": "flow-parchamp",
+        "type": "tab",
+        "label": "Zenbus Parchamp SUBN",
+        "disabled": false,
+        "info": "Test flow for stop Parchamp on line SUBN (GPSO network)"
+    },
+    {
+        "id": "comment-parchamp",
+        "type": "comment",
+        "z": "flow-parchamp",
+        "name": "Parchamp / SUBN - GPSO",
+        "info": "Polls the Zenbus API every 10 seconds for stop Parchamp on line SUBN.\nAlias: gpso | Itinerary: 5426824545828864 | Stop: 6475637859549184",
+        "x": 200,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "zenbus-parchamp",
+        "type": "zenbus-next-bus",
+        "z": "flow-parchamp",
+        "name": "Parchamp SUBN",
+        "alias": "gpso",
+        "itinerary": "5426824545828864",
+        "stop": "6475637859549184",
+        "interval": "10",
+        "x": 200,
+        "y": 200,
+        "wires": [["debug-parchamp"]]
+    },
+    {
+        "id": "debug-parchamp",
+        "type": "debug",
+        "z": "flow-parchamp",
+        "name": "Parchamp ETA",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": true,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "payload.first.eta",
+        "statusType": "auto",
+        "x": 450,
+        "y": 200,
+        "wires": []
+    }
+]

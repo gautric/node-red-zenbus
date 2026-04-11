@@ -58,13 +58,16 @@ When a field is unavailable, it defaults to `'-'` (or `false` for `isLive`).
 - ⚪ Grey ring — no bus found
 - 🔴 Red ring — error or init failure
 
-## Example flow
+## Example flows
 
-A ready-to-use example is bundled with the package.
+Ready-to-use examples are bundled with the package.
 
-In Node-RED: **Menu → Import → Examples → zenbus-next-bus → debug-next-bus**
+In Node-RED: **Menu → Import → Examples → zenbus-next-bus**
 
-Or import manually from [`examples/debug-next-bus.json`](examples/debug-next-bus.json).
+| Example | Stop | Line | File |
+|---|---|---|---|
+| debug-next-bus | default | default | [`examples/debug-next-bus.json`](examples/debug-next-bus.json) |
+| debug-parchamp | Parchamp | SUBN | [`examples/debug-parchamp.json`](examples/debug-parchamp.json) |
 
 ## Finding your IDs
 

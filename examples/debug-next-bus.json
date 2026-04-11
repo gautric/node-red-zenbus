@@ -40,7 +40,7 @@
         "tostatus": true,
         "complete": "payload",
         "targetType": "msg",
-        "statusVal": "payload.next.etaMinutes",
+        "statusVal": "payload.first.eta",
         "statusType": "auto",
         "x": 450,
         "y": 200,

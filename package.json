@@ -11,7 +11,8 @@
     },
     "examples": {
       "zenbus-next-bus": [
-        "examples/debug-next-bus.json"
+        "examples/debug-next-bus.json",
+        "examples/debug-parchamp.json"
       ]
     }
   },
