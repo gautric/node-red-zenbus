@@ -46,6 +46,6 @@
     "node": ">=18"
   },
   "dependencies": {
-    "protobufjs": "^8.0.1"
+    "zenbus": "^1.0.0"
   }
 }
